@@ -1,0 +1,23 @@
+.home-page {
+  .hero-section {
+    background-image: url('https://source.unsplash.com/1600x900/?food');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 40px;
+      border-radius: 10px;
+    }
+  }
+
+  .featured-recipes {
+    padding: 40px 20px;
+    text-align: center;
+  }
+}

@@ -1,0 +1,10 @@
+<div class="categories-container">
+  <h2>Categories</h2>
+  <div class="category-list">
+    <div *ngFor="let category of categories" class="category-item" (click)="onSelectCategory(category)">
+      {{ category }}
+    </div>
+  </div>
+
+  <app-recipe-list [recipes]="recipes"></app-recipe-list>
+</div>

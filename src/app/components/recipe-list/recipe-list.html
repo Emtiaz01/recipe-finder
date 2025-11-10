@@ -1,0 +1,9 @@
+<div class="recipe-grid">
+  <div *ngFor="let recipe of recipes" class="recipe-card">
+    <a [routerLink]="['/recipe', recipe.id]">
+      <img [src]="recipe.imageUrl" [alt]="recipe.title" />
+      <h3>{{ recipe.title }}</h3>
+
+    </a>
+  </div>
+</div>

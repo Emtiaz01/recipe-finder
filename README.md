@@ -1,59 +1,63 @@
-# RecipeFinder
+Project structure ASCII Tree:
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.9.
-
-## Development server
-
-To start a local development server, run:
-
-```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+recipe-finder/
+├─ angular.json
+├─ package.json
+├─ README.md
+├─ tsconfig.app.json
+├─ tsconfig.json
+├─ tsconfig.spec.json
+├─ public/
+└─ src/
+   ├─ index.html
+   ├─ main.ts
+   ├─ styles.scss
+   └─ app/
+      ├─ app.config.ts
+      ├─ app.html
+      ├─ app.routes.ts
+      ├─ app.scss
+      ├─ app.spec.ts
+      ├─ app.ts
+      ├─ assets/
+      │  ├─ icons/
+      │  └─ images/
+      ├─ components/
+      │  ├─ favorites/
+      │  │  ├─ favorites.html
+      │  │  ├─ favorites.scss
+      │  │  ├─ favorites.spec.ts
+      │  │  └─ favorites.ts
+      │  ├─ recipe-details/
+      │  │  ├─ recipe-details.html
+      │  │  ├─ recipe-details.scss
+      │  │  ├─ recipe-details.spec.ts
+      │  │  └─ recipe-details.ts
+      │  ├─ recipe-list/
+      │  │  ├─ recipe-list.html
+      │  │  ├─ recipe-list.scss
+      │  │  ├─ recipe-list.spec.ts
+      │  │  └─ recipe-list.ts
+      │  └─ search-bar/
+      │     ├─ search-bar.html
+      │     ├─ search-bar.scss
+      │     ├─ search-bar.spec.ts
+      │     └─ search-bar.ts
+      ├─ models/
+      │  └─ recipe.model.ts
+      └─ pages/
+         ├─ about/
+         │  ├─ about.html
+         │  ├─ about.scss
+         │  ├─ about.spec.ts
+         │  └─ about.ts
+         ├─ categories/
+         │  ├─ categories.html
+         │  ├─ categories.scss
+         │  ├─ categories.spec.ts
+         │  └─ categories.ts
+         └─ home/
+            ├─ home.html
+            ├─ home.scss
+            ├─ home.spec.ts
+            └─ home.ts
