@@ -1,14 +1,15 @@
 <div class="home-page">
   <div class="hero-section">
+    <div class="hero-overlay"></div>
     <div class="hero-content">
-      <h1>Find Your Next Favorite Recipe</h1>
-      <p>Discover thousands of recipes from around the world.</p>
+      <h1 class="animate-fade-in-down">Find Your Next Favorite Recipe</h1>
+      <p class="animate-fade-in-up">Discover thousands of recipes from around the world.</p>
       <app-search-bar (search)="onSearch($event)"></app-search-bar>
     </div>
   </div>
 
   <div class="featured-recipes">
     <h2>Featured Recipes</h2>
-    <app-recipe-list [recipes]="recipes"></app-recipe-list>
+    <app-recipe-list [recipes]="recipes" [isFavorite]="favoritesService.isFavorite()" (favoriteToggled)="toggleFavorite($event)"></app-recipe-list>
   </div>
 </div>

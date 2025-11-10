@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Recipe } from '../../models/recipe.model';
 import { RouterLink } from '@angular/router';
@@ -12,4 +12,10 @@ import { RouterLink } from '@angular/router';
 })
 export class RecipeList {
   @Input() recipes: Recipe[] = [];
+  @Input() isFavorite: (recipe: Recipe) => boolean = () => false;
+  @Output() favoriteToggled = new EventEmitter<Recipe>();
+
+  toggleFavorite(recipe: Recipe): void {
+    this.favoriteToggled.emit(recipe);
+  }
 }

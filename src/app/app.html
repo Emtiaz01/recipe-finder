@@ -1,25 +1,28 @@
 <header class="header">
   <div class="container">
-    <a class="logo" routerLink="/">Recipe Finder</a>
+    <a class="logo" routerLink="/">
+      <span class="material-icons">restaurant_menu</span>
+      Recipe Finder
+    </a>
     <nav class="nav">
       <ul>
-        <li><a routerLink="/">Home</a></li>
-        <li><a routerLink="/categories">Categories</a></li>
-        <li><a routerLink="/favorites">Favorites</a></li>
-        <li><a routerLink="/about">About</a></li>
+        <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+        <li><a routerLink="/categories" routerLinkActive="active">Categories</a></li>
+        <li><a routerLink="/favorites" routerLinkActive="active">Favorites</a></li>
+        <li><a routerLink="/about" routerLinkActive="active">About</a></li>
       </ul>
     </nav>
   </div>
 </header>
 
 <main class="main">
-  <div class="container">
-    <router-outlet></router-outlet>
-  </div>
+  <router-outlet></router-outlet>
 </main>
 
 <footer class="footer">
   <div class="container">
-    <p>&copy; 2025 Recipe Finder. All Rights Reserved.</p>
+    <div class="footer-bottom">
+      &copy; 2025 Recipe Finder | All Rights Reserved.
+    </div>
   </div>
 </footer>

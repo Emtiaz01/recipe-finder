@@ -41,15 +41,18 @@ export class SearchResults implements OnInit {
 
   private mapMealToRecipe(meal: Meal): Recipe {
     return {
-      id: +meal.idMeal,
-      title: meal.strMeal,
-      imageUrl: meal.strMealThumb,
-      ingredients: [],
-      instructions: [],
-      prepTime: 0,
-      cookTime: 0,
-      servings: 0,
-      category: '',
-    };
+    id: +meal.idMeal,
+    title: meal.strMeal,
+    name: meal.strMeal,
+    imageUrl: meal.strMealThumb,
+    category: meal.strCategory || '',
+    area: '',
+    instructions: '',
+    youtubeUrl: '',
+    ingredients: [],
+    isFavorite: false,
+    time: '25-30',
+    servings: 4,
+};
   }
 }

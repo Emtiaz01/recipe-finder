@@ -1,7 +1,9 @@
 <div class="search-bar-container">
+  <span class="material-icons search-icon">search</span>
   <input
     type="text"
-    placeholder="Search for recipes..."
+    placeholder="Search for recipes, ingredients, or keywords..."
     (keyup.enter)="onSearch($event)"
   />
+  <button class="search-button" (click)="onSearch($event)">Search</button>
 </div>
