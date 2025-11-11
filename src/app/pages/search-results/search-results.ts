@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Recipe, Meal } from '../../models/recipe.model';
 import { RecipeService } from '../../services/recipe';
 import { RecipeList } from '../../components/recipe-list/recipe-list';
+import { mapMealsToRecipes } from '../../utils/recipe-mapper';
 
 @Component({
   selector: 'app-search-results',
@@ -34,25 +35,8 @@ export class SearchResults implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.term = params.get('term') || '';
       this.recipeService.searchRecipes(this.term).subscribe((meals: Meal[]) => {
-        this.recipes = meals ? meals.map(this.mapMealToRecipe) : [];
+        this.recipes = mapMealsToRecipes(meals);
       });
     });
-  }
-
-  private mapMealToRecipe(meal: Meal): Recipe {
-    return {
-    id: +meal.idMeal,
-    title: meal.strMeal,
-    name: meal.strMeal,
-    imageUrl: meal.strMealThumb,
-    category: meal.strCategory || '',
-    area: '',
-    instructions: '',
-    youtubeUrl: '',
-    ingredients: [],
-    isFavorite: false,
-    time: '25-30',
-    servings: 4,
-};
   }
 }

@@ -4,12 +4,20 @@
       <span class="material-icons">restaurant_menu</span>
       Recipe Finder
     </a>
-    <nav class="nav">
+    
+    <!-- Hamburger Menu Button -->
+    <button class="hamburger" (click)="toggleMenu()" [class.active]="isMenuOpen" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    
+    <nav class="nav" [class.open]="isMenuOpen">
       <ul>
-        <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
-        <li><a routerLink="/categories" routerLinkActive="active">Categories</a></li>
-        <li><a routerLink="/favorites" routerLinkActive="active">Favorites</a></li>
-        <li><a routerLink="/about" routerLinkActive="active">About</a></li>
+        <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="closeMenu()">Home</a></li>
+        <li><a routerLink="/categories" routerLinkActive="active" (click)="closeMenu()">Categories</a></li>
+        <li><a routerLink="/favorites" routerLinkActive="active" (click)="closeMenu()">Favorites</a></li>
+        <li><a routerLink="/about" routerLinkActive="active" (click)="closeMenu()">About</a></li>
       </ul>
     </nav>
   </div>

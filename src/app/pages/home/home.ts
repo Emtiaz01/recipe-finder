@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Recipe } from '../../models/recipe.model';
 import { RecipeService } from '../../services/recipe';
@@ -7,6 +7,7 @@ import { RecipeList } from '../../components/recipe-list/recipe-list';
 import { Router } from '@angular/router';
 import { Meal } from '../../models/recipe.model';
 import { FavoritesService } from '../../services/favorites.service';
+import { mapMealsToRecipes } from '../../utils/recipe-mapper';
 
 @Component({
   selector: 'app-home',
@@ -15,8 +16,9 @@ import { FavoritesService } from '../../services/favorites.service';
   templateUrl: './home.html',
   styleUrls: ['./home.scss']
 })
-export class Home implements OnInit {
+export class Home implements OnInit, OnDestroy {
   recipes: Recipe[] = [];
+  showBackToTop: boolean = false;
 
   constructor(
     private recipeService: RecipeService,
@@ -26,8 +28,24 @@ export class Home implements OnInit {
 
   ngOnInit(): void {
     this.recipeService.getRecipes().subscribe((meals: Meal[]) => {
-      this.recipes = meals.map(this.mapMealToRecipe);
+      this.recipes = mapMealsToRecipes(meals);
     });
+
+    // Add scroll event listener for back to top button
+    window.addEventListener('scroll', this.onScroll.bind(this));
+  }
+
+  ngOnDestroy(): void {
+    // Clean up scroll event listener
+    window.removeEventListener('scroll', this.onScroll.bind(this));
+  }
+
+  onScroll(): void {
+    this.showBackToTop = window.pageYOffset > 300;
+  }
+
+  scrollToTop(): void {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   onSearch(term: string): void {
@@ -36,22 +54,5 @@ export class Home implements OnInit {
 
   toggleFavorite(recipe: Recipe): void {
     this.favoritesService.toggleFavorite(recipe);
-  }
-
-  private mapMealToRecipe(meal: Meal): Recipe {
-    return {
-  id: +meal.idMeal,
-  title: meal.strMeal,
-  name: meal.strMeal,
-  imageUrl: meal.strMealThumb,
-  category: meal.strCategory || '',
-  area: '',
-  instructions: "",
-  youtubeUrl: '',
-  ingredients: [],
-  isFavorite: false,
-  time: '25-30',
-  servings: 4,
-};
   }
 }

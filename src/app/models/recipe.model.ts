@@ -21,7 +21,6 @@ export interface MealsResponse {
 }
 
 export interface Recipe {
-title: any;
   id: number;
   name: string;
   category: string;

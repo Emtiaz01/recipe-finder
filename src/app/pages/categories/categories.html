@@ -1,10 +1,72 @@
-<div class="categories-container">
-  <h2>Categories</h2>
-  <div class="category-list">
-    <div *ngFor="let category of categories" class="category-item" (click)="onSelectCategory(category)">
-      {{ category }}
+<div class="categories-page">
+  <!-- Header Section -->
+  <div class="categories-header">
+    <div class="header-content">
+      <h1>Explore Recipe Categories</h1>
+      <p>Discover delicious recipes organized by category</p>
     </div>
   </div>
 
-  <app-recipe-list [recipes]="recipes"></app-recipe-list>
+  <!-- Categories Filter Section -->
+  <div class="categories-filter-section">
+    <div class="container">
+      <h2>Browse by Category</h2>
+      <div class="categories-grid">
+        <div 
+          *ngFor="let category of categories" 
+          class="category-card"
+          [class.active]="selectedCategory === category.strCategory"
+          (click)="onSelectCategory(category.strCategory)">
+          <div class="category-image">
+            <img [src]="category.strCategoryThumb" [alt]="category.strCategory" />
+            <div class="category-overlay"></div>
+          </div>
+          <div class="category-info">
+            <h3>{{ category.strCategory }}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recipes Display Section -->
+  <div class="recipes-section" *ngIf="recipes.length > 0 && !isLoading">
+    <div class="container">
+      <div class="section-header">
+        <h2>{{ selectedCategory }} Recipes</h2>
+        <p class="recipe-count">{{ recipes.length }} recipes found</p>
+      </div>
+      <app-recipe-list 
+        [recipes]="recipes" 
+        [isFavorite]="favoritesService.isFavorite()"
+        (favoriteToggled)="toggleFavorite($event)">
+      </app-recipe-list>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div class="loading-state" *ngIf="isLoading">
+    <div class="container">
+      <div class="spinner"></div>
+      <p>Loading {{ selectedCategory }} recipes...</p>
+    </div>
+  </div>
+
+  <!-- Empty State -->
+  <div class="empty-state" *ngIf="recipes.length === 0 && selectedCategory && !isLoading">
+    <div class="container">
+      <span class="material-icons">restaurant</span>
+      <h3>No recipes found</h3>
+      <p>Try selecting a different category</p>
+    </div>
+  </div>
+
+  <!-- Back to Top Button -->
+  <button 
+    class="back-to-top" 
+    [class.show]="showBackToTop"
+    (click)="scrollToTop()"
+    aria-label="Back to top">
+    <span class="material-icons">arrow_upward</span>
+  </button>
 </div>

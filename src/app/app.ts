@@ -10,4 +10,13 @@ import { RouterLink, RouterOutlet, RouterLinkActive } from '@angular/router';
 })
 export class App {
   title = 'recipe-finder';
+  isMenuOpen = false;
+
+  toggleMenu(): void {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  closeMenu(): void {
+    this.isMenuOpen = false;
+  }
 }

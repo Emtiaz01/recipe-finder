@@ -12,4 +12,14 @@
     <h2>Featured Recipes</h2>
     <app-recipe-list [recipes]="recipes" [isFavorite]="favoritesService.isFavorite()" (favoriteToggled)="toggleFavorite($event)"></app-recipe-list>
   </div>
+
+  <!-- Back to Top Button -->
+  <button 
+    class="back-to-top" 
+    [class.show]="showBackToTop"
+    (click)="scrollToTop()"
+    aria-label="Back to top">
+    <span class="material-icons">arrow_upward</span>
+  </button>
+  
 </div>

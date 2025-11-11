@@ -53,6 +53,7 @@ body {
     align-items: center;
     gap: 8px;
     transition: transform 0.3s ease;
+    z-index: 1001;
 
     .material-icons {
       font-size: 1.8rem;
@@ -60,6 +61,43 @@ body {
 
     &:hover {
       transform: scale(1.05);
+    }
+  }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+
+    span {
+      width: 30px;
+      height: 3px;
+      background-color: white;
+      border-radius: 3px;
+      transition: all 0.3s ease;
+      transform-origin: center;
+    }
+
+    &.active {
+      span:nth-child(1) {
+        transform: rotate(45deg) translateY(10px);
+      }
+
+      span:nth-child(2) {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+
+      span:nth-child(3) {
+        transform: rotate(-45deg) translateY(-10px);
+      }
     }
   }
 
@@ -233,34 +271,65 @@ body {
 
 @media (max-width: 768px) {
   :root {
-    --header-height: auto;
+    --header-height: 60px;
   }
 
   .header {
     padding: 15px 20px;
 
     .container {
-      flex-direction: column;
-      gap: 15px;
+      flex-direction: row;
+      position: relative;
+    }
+
+    .hamburger {
+      display: flex;
     }
 
     .logo {
       font-size: 1.4rem;
     }
 
-    .nav ul {
-      flex-direction: column;
-      width: 100%;
-      text-align: center;
-      gap: 5px;
+    .nav {
+      position: fixed;
+      top: 60px;
+      right: -100%;
+      width: 280px;
+      height: calc(100vh - 60px);
+      background-color: var(--primary-color);
+      transition: right 0.3s ease;
+      box-shadow: -2px 0 10px rgba(0,0,0,0.2);
+      overflow-y: auto;
 
-      li {
+      &.open {
+        right: 0;
+      }
+
+      ul {
+        flex-direction: column;
         width: 100%;
+        padding: 20px 0;
+        gap: 0;
 
-        a {
-          display: block;
-          padding: 10px;
-          font-size: 0.95rem;
+        li {
+          width: 100%;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+          a {
+            display: block;
+            padding: 15px 25px;
+            font-size: 1rem;
+            border-radius: 0;
+
+            &:hover {
+              background-color: rgba(255, 255, 255, 0.15);
+            }
+
+            &.active {
+              background-color: rgba(255, 255, 255, 0.25);
+              border-left: 4px solid white;
+            }
+          }
         }
       }
     }
