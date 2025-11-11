@@ -250,6 +250,10 @@
     .recipes-section .section-header h2 {
       font-size: 2.2rem;
     }
+
+    .recipes-section {
+      padding: 50px 20px;
+    }
   }
 }
 
@@ -288,8 +292,20 @@
     .recipes-section {
       padding: 40px 15px;
 
-      .section-header h2 {
-        font-size: 2rem;
+      .container {
+        padding: 0 10px;
+      }
+
+      .section-header {
+        margin-bottom: 30px;
+
+        h2 {
+          font-size: 2rem;
+        }
+
+        .recipe-count {
+          font-size: 1rem;
+        }
       }
     }
 
@@ -339,8 +355,49 @@
     .recipes-section {
       padding: 30px 10px;
 
-      .section-header h2 {
-        font-size: 1.75rem;
+      .container {
+        padding: 0 5px;
+      }
+
+      .section-header {
+        margin-bottom: 25px;
+
+        h2 {
+          font-size: 1.75rem;
+        }
+
+        .recipe-count {
+          font-size: 0.95rem;
+        }
+      }
+    }
+
+    .loading-state {
+      padding: 60px 10px;
+
+      .spinner {
+        width: 40px;
+        height: 40px;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+    }
+
+    .empty-state {
+      padding: 50px 10px;
+
+      .material-icons {
+        font-size: 50px;
+      }
+
+      h3 {
+        font-size: 1.3rem;
+      }
+
+      p {
+        font-size: 0.95rem;
       }
     }
   }

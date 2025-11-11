@@ -19,7 +19,7 @@
   input {
     flex-grow: 1;
     padding: 15px 20px 15px 50px;
-    font-size: 1rem;
+    font-size: 0.9rem;
     border: none;
     background: transparent;
     outline: none;
@@ -42,4 +42,27 @@
       filter: brightness(90%);
     }
   }
+
+@media (max-width: 768px) {
+  .categories-page .back-to-top {
+    bottom: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+
+    .material-icons {
+      font-size: 22px;
+    }
+  }
+}
+}
+@media (max-width: 480px) {
+.search-bar-container {
+    width: 100%;
+    
+}
+.search-button {
+      position: absolute;
+      right: 5px;
+    }
 }
