@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -10,8 +10,13 @@ import { CommonModule } from '@angular/common';
 })
 export class SearchBar {
   @Output() search = new EventEmitter<string>();
+  @ViewChild('searchInput') searchInput!: ElementRef<HTMLInputElement>;
 
-  onSearch(event: any): void {
-    this.search.emit(event.target.value);
+  onSearch(): void {
+    const searchTerm = this.searchInput.nativeElement.value.trim();
+    if (searchTerm) {
+      this.search.emit(searchTerm);
+      this.searchInput.nativeElement.value = ''; // Clear input after search
+    }
   }
 }

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-
+import { BackToTop } from '../../components/back-to-top/back-to-top';
 @Component({
   selector: 'app-about',
-  imports: [],
+  imports: [BackToTop],
   templateUrl: './about.html',
   styleUrl: './about.scss',
 })

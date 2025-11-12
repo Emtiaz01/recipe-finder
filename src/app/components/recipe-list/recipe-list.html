@@ -2,9 +2,6 @@
   <div *ngFor="let recipe of recipes" class="recipe-card">
     <div class="card-image">
       <img [src]="recipe.imageUrl" [alt]="recipe.name" />
-      <button class="favorite-btn" (click)="toggleFavorite(recipe)">
-        <span class="material-icons">{{ isFavorite(recipe) ? 'favorite' : 'favorite_border' }}</span>
-      </button>
     </div>
     <div class="card-content">
       <span class="recipe-category">{{ recipe.category }}</span>

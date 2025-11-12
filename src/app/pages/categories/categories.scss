@@ -79,7 +79,7 @@
         box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 
         .category-overlay {
-          background: rgba(255, 111, 97, 0.7);
+          background: var(--primary-color);
         }
 
         .category-image img {
@@ -92,7 +92,8 @@
         box-shadow: 0 8px 20px rgba(255, 111, 97, 0.3);
 
         .category-overlay {
-          background: rgba(255, 111, 97, 0.6);
+          background: var(--primary-color);
+          opacity: 0.9;
         }
       }
 

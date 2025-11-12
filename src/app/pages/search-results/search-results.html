@@ -1,0 +1,57 @@
+<div class="search-results-page">
+  <!-- Header Section -->
+  <div class="search-header">
+    <button class="back-button" (click)="goBack()">
+      <span class="material-icons">arrow_back</span>
+      Back to Home
+    </button>
+    @if (term) {
+      <h1 class="search-title">
+        <span class="search-term">{{ term }}</span>
+      </h1>
+    }
+  </div>
+
+  <!-- Loading State -->
+  @if (isLoading) {
+    <div class="loading-container">
+      <div class="spinner"></div>
+      <p>Searching for recipes...</p>
+    </div>
+  }
+
+  <!-- Results Section -->
+  @if (!isLoading && hasSearched) {
+    <div class="results-container">
+      <!-- No Results -->
+      @if (recipes.length === 0) {
+        <div class="no-results">
+          <span class="material-icons">search_off</span>
+          <h2>No recipes found</h2>
+          <p>We couldn't find any recipes matching "{{ term }}"</p>
+          <p class="suggestion">Try searching with different keywords or browse our categories.</p>
+          <div class="search-tips">
+            <h3>Search Tips:</h3>
+            <ul>
+              <li>Try searching for specific meal names (e.g., "chicken", "pasta", "cake")</li>
+              <li>Search by category (e.g., "Dessert", "Seafood", "Vegetarian", "Beef", "Chicken")</li>
+              <li>Use simpler or more general terms</li>
+            </ul>
+          </div>
+          <button class="browse-button" (click)="goBack()">
+            <span class="material-icons">restaurant_menu</span>
+            Browse All Recipes
+          </button>
+        </div>
+      }
+
+      <!-- Results Found -->
+      @if (recipes.length > 0) {
+        <div class="results-content">
+          <app-recipe-list [recipes]="recipes"></app-recipe-list>
+        </div>
+      }
+    </div>
+  }
+</div>
+<app-back-to-top></app-back-to-top>

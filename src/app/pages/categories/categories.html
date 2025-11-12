@@ -34,12 +34,10 @@
     <div class="container">
       <div class="section-header">
         <h2>{{ selectedCategory }} Recipes</h2>
-        <p class="recipe-count">{{ recipes.length }} recipes found</p>
+        <p class="recipe-count">{{ recipes.length }} recipes</p>
       </div>
       <app-recipe-list 
-        [recipes]="recipes" 
-        [isFavorite]="favoritesService.isFavorite()"
-        (favoriteToggled)="toggleFavorite($event)">
+        [recipes]="recipes">
       </app-recipe-list>
     </div>
   </div>
@@ -62,11 +60,5 @@
   </div>
 
   <!-- Back to Top Button -->
-  <button 
-    class="back-to-top" 
-    [class.show]="showBackToTop"
-    (click)="scrollToTop()"
-    aria-label="Back to top">
-    <span class="material-icons">arrow_upward</span>
-  </button>
+  <app-back-to-top></app-back-to-top>
 </div>

@@ -30,7 +30,21 @@ export class RecipeService {
 
   searchRecipes(term: string): Observable<Meal[]> {
     return this.http.get<MealsResponse>(`${this.baseUrl}/search.php?s=${term}`).pipe(
-      map(response => response.meals)
+      map(response => response.meals || [])
+    );
+  }
+
+  // Search by category name
+  searchByCategory(category: string): Observable<Meal[]> {
+    return this.http.get<MealsResponse>(`${this.baseUrl}/filter.php?c=${category}`).pipe(
+      map(response => response.meals || [])
+    );
+  }
+
+  // Get full meal details by ID
+  getMealById(id: string): Observable<Meal | null> {
+    return this.http.get<MealsResponse>(`${this.baseUrl}/lookup.php?i=${id}`).pipe(
+      map(response => response.meals ? response.meals[0] : null)
     );
   }
 }

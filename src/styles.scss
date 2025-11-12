@@ -1,16 +1,55 @@
-/* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
 :root {
+  /* Primary Colors */
   --primary-color: #ff6f61;
   --secondary-color: #333;
+  
+  /* Gradient Colors */
+  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-secondary: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  --gradient-accent: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+  
+  /* Brand Colors */
+  --purple-primary: #667eea;
+  --purple-secondary: #764ba2;
+  
+  /* Background Colors */
   --background-color: #f9f9f9;
+  --background-light: #f5f7fa;
+  --background-gray: #c3cfe2;
+  --background-white: #ffffff;
+  --background-neutral: #f7fafc;
+  
+  /* Text Colors */
   --text-color: #333;
   --text-color-light: #666;
+  --text-color-dark: #2d3748;
+  --text-color-medium: #4a5568;
+  --text-white: #ffffff;
+  
+  /* Border Colors */
+  --border-color: #e2e8f0;
+  --border-color-light: #ddd;
+  --border-accent: 4px solid #667eea;
+  
+  /* Card Styles */
   --card-background: #ffffff;
   --card-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  --card-shadow-hover: 0 10px 40px rgba(0, 0, 0, 0.1);
+  --card-shadow-large: 0 10px 25px rgba(102, 126, 234, 0.4);
+  
+  /* Input Styles */
   --input-border-color: #ddd;
+  
+  /* Font */
   --font-family: 'Poppins', sans-serif;
+  
+  /* Spacing */
+  --border-radius: 20px;
+  --border-radius-small: 10px;
+  --border-radius-medium: 12px;
+  --border-radius-large: 25px;
 }
 
 body {

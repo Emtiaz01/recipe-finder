@@ -2,8 +2,9 @@
   <span class="material-icons search-icon">search</span>
   <input
     type="text"
+    #searchInput
     placeholder="Search for recipes"
-    (keyup.enter)="onSearch($event)"
+    (keyup.enter)="onSearch()"
   />
-  <button class="search-button" (click)="onSearch($event)">Search</button>
+  <button class="search-button" (click)="onSearch()">Search</button>
 </div>

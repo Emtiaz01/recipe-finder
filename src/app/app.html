@@ -16,8 +16,8 @@
       <ul>
         <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" (click)="closeMenu()">Home</a></li>
         <li><a routerLink="/categories" routerLinkActive="active" (click)="closeMenu()">Categories</a></li>
-        <li><a routerLink="/favorites" routerLinkActive="active" (click)="closeMenu()">Favorites</a></li>
         <li><a routerLink="/about" routerLinkActive="active" (click)="closeMenu()">About</a></li>
+        <li><a routerLink="/contact" routerLinkActive="active" (click)="closeMenu()">Contact</a></li>
       </ul>
     </nav>
   </div>
@@ -29,8 +29,69 @@
 
 <footer class="footer">
   <div class="container">
+    <!-- Footer Content -->
+    <div class="footer-content">
+      <!-- About Section -->
+      <div class="footer-section">
+        <div class="footer-logo">
+          <span class="material-icons">restaurant_menu</span>
+          <h3>Recipe Finder</h3>
+        </div>
+        <p>Discover thousands of delicious recipes from around the world. Your ultimate culinary companion for every meal.</p>
+        <div class="socials">
+          <a href="https://www.facebook.com/000Emtiaz000/" aria-label="Facebook"><span class="material-icons">facebook</span></a>
+          <a href="https://discord.com/channels/@me" aria-label="Discord"><span class="material-icons">discord</span></a>
+          <a href="https://www.instagram.com/emtiaz.ahmed.emon/" aria-label="Instagram"><span class="material-icons">camera_alt</span></a>
+          <a href="https://www.youtube.com/" aria-label="YouTube"><span class="material-icons">play_circle</span></a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a routerLink="/">Home</a></li>
+          <li><a routerLink="/categories">Categories</a></li>
+          <li><a routerLink="/about">About Us</a></li>
+          <li><a routerLink="/contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Categories -->
+      <div class="footer-section">
+        <h3>Popular Categories</h3>
+        <ul>
+          <li><a routerLink="/categories">Desserts</a></li>
+          <li><a routerLink="/categories">Vegetarian</a></li>
+          <li><a routerLink="/categories">Seafood</a></li>
+          <li><a routerLink="/categories">Chicken</a></li>
+        </ul>
+      </div>
+
+      <!-- Newsletter -->
+      <div class="footer-section">
+        <h3>Stay Updated</h3>
+        <p>Subscribe to our newsletter for the latest recipes and cooking tips.</p>
+        <div class="newsletter-form">
+          <input type="email" class="contact-input" placeholder="Your email address" />
+          <button class="btn">
+            <span class="material-icons">send</span>
+            Subscribe
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Bottom -->
     <div class="footer-bottom">
-      &copy; 2025 Recipe Finder | All Rights Reserved.
+      <p>&copy; 2025 Recipe Finder. All Rights Reserved.</p>
+      <div class="footer-links">
+        <a routerLink="/privacy-policy">Privacy Policy</a>
+        <span>•</span>
+        <a routerLink="/terms-of-service">Terms of Service</a>
+        <span>•</span>
+        <a routerLink="/cookie-policy">Cookie Policy</a>
+      </div>
     </div>
   </div>
 </footer>
