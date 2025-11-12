@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, forkJoin, of } from 'rxjs';
+import { map, switchMap, catchError } from 'rxjs/operators';
 import { CategoriesResponse, MealsResponse, Meal } from '../models/recipe.model';
 
 @Injectable({
@@ -24,7 +24,21 @@ export class RecipeService {
 
   getRecipesByCategory(category: string): Observable<Meal[]> {
     return this.http.get<MealsResponse>(`${this.baseUrl}/filter.php?c=${category}`).pipe(
-      map(response => response.meals)
+      switchMap(response => {
+        if (!response.meals || response.meals.length === 0) {
+          return of([]);
+        }
+        
+        const detailRequests = response.meals.map(meal => 
+          this.getMealById(meal.idMeal).pipe(
+            catchError(() => of(null))
+          )
+        );
+
+        return forkJoin(detailRequests).pipe(
+          map(meals => meals.filter(meal => meal !== null) as Meal[])
+        );
+      })
     );
   }
 

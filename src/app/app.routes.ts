@@ -7,6 +7,7 @@ import { SearchResults } from './pages/search-results/search-results';
 import { PrivacyPolicy } from './pages/privacy-policy/privacy-policy';
 import { TermsOfService } from './pages/terms-of-service/terms-of-service';
 import { CookiePolicy } from './pages/cookie-policy/cookie-policy';
+import { RecipeDetails } from './components/recipe-details/recipe-details';
 
 export const routes: Routes = [
   { path: '', component: Home },
@@ -14,6 +15,7 @@ export const routes: Routes = [
   { path: 'about', component: About },
   { path: 'contact', component: Contact },
   { path: 'search/:term', component: SearchResults },
+  { path: 'recipe/:id', component: RecipeDetails },
   { path: 'privacy-policy', component: PrivacyPolicy },
   { path: 'terms-of-service', component: TermsOfService },
   { path: 'cookie-policy', component: CookiePolicy }

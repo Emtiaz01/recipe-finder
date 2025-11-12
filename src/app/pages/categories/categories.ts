@@ -32,6 +32,8 @@ export class Categories implements OnInit {
   onSelectCategory(category: string): void {
     this.selectedCategory = category;
     this.isLoading = true;
+    this.recipes = []; 
+    
     this.recipeService.getRecipesByCategory(category).subscribe((meals: Meal[]) => {
       this.recipes = mapMealsToRecipes(meals);
       this.isLoading = false;
@@ -43,10 +45,5 @@ export class Categories implements OnInit {
         }
       }, 100);
     });
-  }
-
-  getCategoryDescription(description: string): string {
-    if (!description) return '';
-    return description.length > 100 ? description.substring(0, 100) + '...' : description;
   }
 }

@@ -1,18 +1,172 @@
-<div *ngIf="recipe" class="recipe-details-container">
-  <h2>{{ recipe.name }}</h2>
-  <img [src]="recipe.imageUrl" [alt]="recipe.name" />
+<div class="recipe-details-page">
+  <!-- Loading State -->
+  @if (isLoading) {
+    <div class="loading-container">
+      <div class="spinner"></div>
+      <p>Loading recipe details...</p>
+    </div>
+  }
 
-  <div class="recipe-meta">
-    <span><strong>Servings:</strong> {{ recipe.servings }}</span>
-  </div>
+  <!-- Recipe Details -->
+  @if (!isLoading && recipe) {
+    <div class="recipe-details-container">
+      <!-- Navigation Bar -->
+      <div class="nav-bar">
+        <button class="back-button" (click)="goBack()">
+          <span class="material-icons">arrow_back</span>
+          <span>Back to Recipes</span>
+        </button>
+      </div>
 
-  <h3>Ingredients</h3>
-  <ul>
-    <li *ngFor="let ingredient of recipe.ingredients">{{ ingredient }}</li>
-  </ul>
+      <!-- Hero Section -->
+      <div class="recipe-hero">
+        <div class="hero-image-container">
+          <img [src]="recipe.strMealThumb" [alt]="recipe.strMeal" class="hero-image" />
+          <div class="hero-overlay">
+            <div class="hero-content">
+              <h1 class="recipe-title">{{ recipe.strMeal }}</h1>
+              <div class="recipe-badges">
+                <span class="badge category">
+                  <span class="material-icons">restaurant_menu</span>
+                  {{ recipe.strCategory }}
+                </span>
+                <span class="badge area">
+                  <span class="material-icons">public</span>
+                  {{ recipe.strArea }} Cuisine
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+     
+      <!-- Content Section -->
+      <div class="recipe-content">
+        <div class="content-wrapper">
+          <!-- Ingredients Section -->
+          <div class="ingredients-section">
+            <div class="section-card">
+              <div class="section-header">
+                <h2>
+                  <span class="material-icons">shopping_cart</span>
+                  Ingredients
+                </h2>
+                <span class="ingredient-count">{{ ingredients.length }} items</span>
+              </div>
+              <ul class="ingredients-list">
+                @for (item of ingredients; track item.ingredient; let idx = $index) {
+                  <li class="ingredient-item">
+                    <input type="checkbox" [id]="'ingredient-' + idx" class="ingredient-checkbox" />
+                    <label [for]="'ingredient-' + idx" class="ingredient-label">
+                      <span class="checkbox-custom"></span>
+                      <span class="ingredient-text">
+                        <span class="measure">{{ item.measure }}</span>
+                        <span class="ingredient">{{ item.ingredient }}</span>
+                      </span>
+                    </label>
+                  </li>
+                }
+              </ul>
+              <button class="shopping-list-button">
+                <span class="material-icons">playlist_add</span>
+                Add All to Shopping List
+              </button>
+            </div>
+          </div>
 
-  <h3>Instructions</h3>
-  <ol>
-    <li *ngFor="let instruction of recipe.instructions">{{ instruction }}</li>
-  </ol>
+          <!-- Instructions Section -->
+          <div class="instructions-section">
+            <div class="section-card">
+              <div class="section-header">
+                <h2>
+                  <span class="material-icons">menu_book</span>
+                  Cooking Instructions
+                </h2>
+              </div>
+              <div class="instructions-content">
+                @for (step of getInstructionSteps(); track step; let i = $index) {
+                  <div class="instruction-step">
+                    <div class="step-number">{{ i + 1 }}</div>
+                    <p class="step-text">{{ step }}</p>
+                  </div>
+                }
+              </div>
+            </div>
+
+            <!-- Video Section -->
+            @if (recipe.strYoutube) {
+              <div class="section-card video-section">
+                <div class="section-header">
+                  <h2>
+                    <span class="material-icons">play_circle_outline</span>
+                    Video Tutorial
+                  </h2>
+                  <a [href]="recipe.strYoutube" target="_blank" class="watch-on-youtube">
+                    <span class="material-icons">open_in_new</span>
+                    Watch on YouTube
+                  </a>
+                </div>
+                <div class="video-wrapper">
+                  <iframe
+                    [src]="getYoutubeEmbedUrl(recipe.strYoutube) | safe: 'resourceUrl'"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                  </iframe>
+                </div>
+              </div>
+            }
+
+            <!-- Tips & Notes Section -->
+            <div class="section-card tips-section">
+              <div class="section-header">
+                <h2>
+                  <span class="material-icons">lightbulb_outline</span>
+                  Chef's Tips
+                </h2>
+              </div>
+              <div class="tips-content">
+                <div class="tip-item">
+                  <span class="material-icons">check_circle</span>
+                  <p>Read through the entire recipe before you start cooking to familiarize yourself with the steps.</p>
+                </div>
+                <div class="tip-item">
+                  <span class="material-icons">check_circle</span>
+                  <p>Prepare all ingredients and have them measured out before you begin - this is called "mise en place".</p>
+                </div>
+                <div class="tip-item">
+                  <span class="material-icons">check_circle</span>
+                  <p>Don't be afraid to adjust seasonings to match your personal taste preferences.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Source Link -->
+            @if (recipe.strSource) {
+              <div class="source-section">
+                <a [href]="recipe.strSource" target="_blank" rel="noopener" class="source-link">
+                  <span class="material-icons">launch</span>
+                  View Original Recipe Source
+                </a>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+
+  <!-- Error State -->
+  @if (!isLoading && !recipe) {
+    <div class="error-container">
+      <span class="material-icons">error_outline</span>
+      <h2>Recipe Not Found</h2>
+      <p>Sorry, we couldn't find the recipe you're looking for.</p>
+      <button class="back-button" (click)="goBack()">
+        <span class="material-icons">home</span>
+        Go Back Home
+      </button>
+    </div>
+  }
 </div>
+<app-back-to-top></app-back-to-top>

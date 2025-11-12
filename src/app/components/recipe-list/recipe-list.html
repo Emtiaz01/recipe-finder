@@ -7,8 +7,8 @@
       <span class="recipe-category">{{ recipe.category }}</span>
       <h3 class="recipe-title">{{ recipe.name }}</h3>
       <div class="recipe-meta">
-        <span><span class="material-icons">timer</span> {{ recipe.time }} min</span>
-        <span><span class="material-icons">person</span> {{ recipe.servings }} servings</span>
+        <span><span class="material-icons">public</span> {{ recipe.area }} Cuisine</span>
+        <span><span class="material-icons">shopping_basket</span> {{ recipe.ingredients.length }} Ingredients</span>
       </div>
       <a [routerLink]="['/recipe', recipe.id]" class="view-recipe-btn">View Recipe</a>
     </div>

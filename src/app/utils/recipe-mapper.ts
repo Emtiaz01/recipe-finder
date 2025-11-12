@@ -1,4 +1,5 @@
 import { Meal, Recipe } from '../models/recipe.model';
+import { extractIngredients } from './ingredient-extractor';
 
 export function mapMealToRecipe(meal: Meal): Recipe {
   return {
@@ -6,10 +7,10 @@ export function mapMealToRecipe(meal: Meal): Recipe {
     name: meal.strMeal,
     imageUrl: meal.strMealThumb,
     category: meal.strCategory || '',
-    area: '',
+    area: meal.strArea || 'Unknown',
     instructions: '',
     youtubeUrl: '',
-    ingredients: [],
+    ingredients: extractIngredients(meal),
     isFavorite: false,
     time: '25-30',
     servings: 4,
